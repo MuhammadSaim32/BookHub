@@ -30,6 +30,7 @@ router.get("/add", async (req, res) => {
   // get userdata by username
   const UserData = await User.findOne({ name: username });
 
+  //if user is not exist
   if (UserData == null) {
     res.json({ error: "username not exist" });
   }
@@ -38,7 +39,7 @@ router.get("/add", async (req, res) => {
   //get all books added by user
   const booksData = await Book.find({ addedBy: UserId });
 
-  //if no bood added by user
+  //if no book added by user
   if (booksData.length == 0) {
     res.json({ response: "no book added by user" });
   }
